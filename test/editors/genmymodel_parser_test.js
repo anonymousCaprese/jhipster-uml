@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const expect = require('chai').expect;
-
+const path = require('path');
 const fail = expect.fail;
 const ParserFactory = require('../../lib/editors/parser_factory');
 
@@ -8,7 +8,7 @@ describe('GenMyModelParser', () => {
   describe('when passing a valid diagram', () => {
     describe('taken from the HR example', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -148,7 +148,7 @@ describe('GenMyModelParser', () => {
     });
     describe('with required relationships', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_required_relationships.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_required_relationships.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -165,7 +165,7 @@ describe('GenMyModelParser', () => {
     });
     describe('with a lowercase type', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_lowercased_string_type.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_lowercased_string_type.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -177,7 +177,7 @@ describe('GenMyModelParser', () => {
     });
     describe('with comments', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_comments.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_comments.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -210,7 +210,7 @@ describe('GenMyModelParser', () => {
     });
     describe('with a user class', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_user_class_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_user_class_test.xmi',
         databaseType: 'sql',
         noUserManagement: true
       });
@@ -228,7 +228,7 @@ describe('GenMyModelParser', () => {
     describe('with enums', () => {
       describe('with values', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/genmymodel_enum_test.xmi',
+          file: path.dirname(__dirname) + '/xmi/genmymodel_enum_test.xmi',
           databaseType: 'sql',
           noUserManagement: true
         });
@@ -256,7 +256,7 @@ describe('GenMyModelParser', () => {
       });
       describe('without values', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/genmymodel_enum_no_value_test.xmi',
+          file: path.dirname(__dirname) + '/xmi/genmymodel_enum_no_value_test.xmi',
           databaseType: 'sql',
           noUserManagement: true
         });
@@ -273,7 +273,7 @@ describe('GenMyModelParser', () => {
     });
     describe('with package', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_package.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_package.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -294,7 +294,7 @@ describe('GenMyModelParser', () => {
   describe('when passing an invalid diagram', () => {
     describe('as a class has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_no_class_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_no_class_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -310,7 +310,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as a field has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_no_attribute_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_no_attribute_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -326,7 +326,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as an enum\'s value as no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_enum_no_attribute_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_enum_no_attribute_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -342,7 +342,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as an enum has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_enum_no_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_enum_no_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -358,7 +358,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as a class name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_reserved_class_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_reserved_class_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -374,7 +374,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as a field name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_reserved_field_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_reserved_field_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -390,7 +390,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as a table name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_reserved_table_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_reserved_table_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -406,7 +406,7 @@ describe('GenMyModelParser', () => {
     });
     describe('as an invalid type is used', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/genmymodel_wrong_type.xmi',
+        file: path.dirname(__dirname) + '/xmi/genmymodel_wrong_type.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;

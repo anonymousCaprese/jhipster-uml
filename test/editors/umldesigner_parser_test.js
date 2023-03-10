@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const expect = require('chai').expect;
-
+const path = require('path')
 const fail = expect.fail;
 const DatabaseTypes = require('jhipster-core').JHipsterDatabaseTypes;
 const xml2js = require('xml2js');
@@ -16,7 +16,7 @@ describe('UMLDesignerParser', () => {
   describe('when passing a valid diagram', () => {
     describe('taken from the HR example', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
 
@@ -152,11 +152,11 @@ describe('UMLDesignerParser', () => {
     });
     describe('with required relationships', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_required_relationships.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_required_relationships.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
       const parsedData2 = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_no_lower_bound.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_no_lower_bound.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
 
@@ -182,7 +182,7 @@ describe('UMLDesignerParser', () => {
     });
     describe('with a lowercase type', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_lowercased_string_type.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_lowercased_string_type.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
 
@@ -192,7 +192,7 @@ describe('UMLDesignerParser', () => {
     });
     describe('with comments', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_comments.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_comments.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
 
@@ -219,7 +219,7 @@ This <b>sucks</b>.`
     });
     describe('with a user class', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_user.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_user.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL),
         noUserManagement: true
       });
@@ -235,7 +235,7 @@ This <b>sucks</b>.`
     describe('with enums', () => {
       describe('with values', () => {
         const parsedData = UMLDesignerParser.parse({
-          root: getRootElement(readFileContent('./test/xmi/umldesigner_enum_test.uml')),
+          root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_enum_test.uml')),
           databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
         });
 
@@ -253,7 +253,7 @@ This <b>sucks</b>.`
       });
       describe('without values', () => {
         const parsedData = UMLDesignerParser.parse({
-          root: getRootElement(readFileContent('./test/xmi/umldesigner_enum_no_value_test.uml')),
+          root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_enum_no_value_test.uml')),
           databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
         });
 
@@ -271,7 +271,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_no_class_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_no_class_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -284,7 +284,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_no_attribute_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_no_attribute_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -297,7 +297,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_enum_no_attribute_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_enum_no_attribute_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -310,7 +310,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_enum_no_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_enum_no_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -323,7 +323,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_reserved_class_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_reserved_class_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -336,7 +336,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_reserved_field_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_reserved_field_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -349,7 +349,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_reserved_table_name_test.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_reserved_table_name_test.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -362,7 +362,7 @@ This <b>sucks</b>.`
       it('fails', () => {
         try {
           UMLDesignerParser.parse({
-            root: getRootElement(readFileContent('./test/xmi/umldesigner_wrong_typename.uml')),
+            root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_wrong_typename.uml')),
             databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
           });
           fail();
@@ -373,7 +373,7 @@ This <b>sucks</b>.`
     });
     describe('with a user package', () => {
       const parsedData = UMLDesignerParser.parse({
-        root: getRootElement(readFileContent('./test/xmi/umldesigner_package.uml')),
+        root: getRootElement(readFileContent(path.dirname(__dirname) + '/xmi/umldesigner_package.uml')),
         databaseTypes: initDatabaseTypeHolder(DatabaseTypes.SQL)
       });
 

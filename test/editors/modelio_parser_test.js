@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const expect = require('chai').expect;
-
+const path = require('path')
 const fail = expect.fail;
 const ParserFactory = require('../../lib/editors/parser_factory');
 
@@ -8,7 +8,7 @@ describe('ModelioParser', () => {
   describe('when passing a valid diagram', () => {
     describe('taken from the HR example', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -148,7 +148,7 @@ describe('ModelioParser', () => {
     });
     describe('with required relationships', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_required_relationships.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_required_relationships.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -165,7 +165,7 @@ describe('ModelioParser', () => {
     });
     describe('with a lowercase type', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_lowercased_string_type.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_lowercased_string_type.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -177,7 +177,7 @@ describe('ModelioParser', () => {
     });
     describe('with comments', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_comments.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_comments.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -217,7 +217,7 @@ describe('ModelioParser', () => {
     });
     describe('with a user class', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_user_class_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_user_class_test.xmi',
         databaseType: 'sql',
         noUserManagement: true
       });
@@ -235,7 +235,7 @@ describe('ModelioParser', () => {
     describe('with enums', () => {
       describe('with values', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio_enum_test.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio_enum_test.xmi',
           databaseType: 'sql',
           noUserManagement: true
         });
@@ -263,7 +263,7 @@ describe('ModelioParser', () => {
       });
       describe('without values', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio_enum_no_value_test.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio_enum_no_value_test.xmi',
           databaseType: 'sql',
           noUserManagement: true
         });
@@ -281,7 +281,7 @@ describe('ModelioParser', () => {
     describe('with packages', () => {
       describe('simple model', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio_packages.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio_packages.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -301,7 +301,7 @@ describe('ModelioParser', () => {
       });
       describe('more complex model', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio_packages2.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio_packages2.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -326,7 +326,7 @@ describe('ModelioParser', () => {
   describe('when passing an invalid diagram', () => {
     describe('as a class has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_no_class_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_no_class_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -342,7 +342,7 @@ describe('ModelioParser', () => {
     });
     describe('as a field has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_no_attribute_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_no_attribute_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -358,7 +358,7 @@ describe('ModelioParser', () => {
     });
     describe('as a validation has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_no_validation_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_no_validation_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -374,7 +374,7 @@ describe('ModelioParser', () => {
     });
     describe('as an enum\'s value as no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_enum_no_attribute_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_enum_no_attribute_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -390,7 +390,7 @@ describe('ModelioParser', () => {
     });
     describe('as an enum has no name', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_enum_no_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_enum_no_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -406,7 +406,7 @@ describe('ModelioParser', () => {
     });
     describe('as a class name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_reserved_class_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_reserved_class_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -422,7 +422,7 @@ describe('ModelioParser', () => {
     });
     describe('as a field name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_reserved_field_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_reserved_field_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -438,7 +438,7 @@ describe('ModelioParser', () => {
     });
     describe('as a table name is a reserved word', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_reserved_table_name_test.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_reserved_table_name_test.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
@@ -454,7 +454,7 @@ describe('ModelioParser', () => {
     });
     describe('as an invalid type is used', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_wrong_typename.xmi',
+        file: path.dirname(__dirname) + '/xmi/modelio_wrong_typename.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;

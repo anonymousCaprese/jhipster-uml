@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 const expect = require('chai').expect;
-
+const path = require('path')
 const fail = expect.fail;
 const ParserFactory = require('../../lib/editors/parser_factory');
 const JDLExporter = require('../../lib/export/jdl_exporter');
@@ -23,7 +23,7 @@ describe('JDLExporter', () => {
     context('when passing a valid parsed data', () => {
       context('with no option', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -100,7 +100,7 @@ relationship ManyToMany {
       });
       context('with options', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -130,7 +130,7 @@ relationship ManyToMany {
       });
       context('with an enum', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio_enum_test.xmi',
+          file: path.dirname(__dirname) + '/xmi/modelio_enum_test.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -160,7 +160,7 @@ enum MySecondEnumeration {
   });
   describe('::toJDLString', () => {
     const parserData = ParserFactory.createParser({
-      file: './test/xmi/modelio.xmi',
+      file: path.dirname(__dirname) + '/xmi/modelio.xmi',
       databaseType: 'sql'
     });
     const parser = parserData.parser;

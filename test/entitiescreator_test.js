@@ -53,7 +53,7 @@ describe('EntitiesCreator', () => {
       });
       describe('because the user has relationships with a NoSQL database type', () => {
         const parserData = ParserFactory.createParser({
-          file: './test/xmi/modelio.xmi',
+          file: __dirname + '/xmi/modelio.xmi',
           databaseType: 'sql'
         });
         const parser = parserData.parser;
@@ -71,14 +71,14 @@ describe('EntitiesCreator', () => {
     });
     describe('when passing valid args', () => {
       const parserData = ParserFactory.createParser({
-        file: './test/xmi/modelio.xmi',
+        file: __dirname + '/xmi/modelio.xmi',
         databaseType: 'sql'
       });
       const parser = parserData.parser;
       const parsedData = parser.parse(parserData.data);
       let entities;
       const invalidRequiredRelationshipParserData = ParserFactory.createParser({
-        file: './test/xmi/modelio_required_one_to_many.xmi',
+        file: __dirname + '/xmi/modelio_required_one_to_many.xmi',
         databaseType: 'sql'
       });
       const invalidParser = invalidRequiredRelationshipParserData.parser;
